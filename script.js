@@ -12,12 +12,18 @@ async function fetchProductData() {
 }
 
 function showImages(category, subcategory) {
-  const filtered = data.filter(item => 
-      item['Category'] === category && item['Subcategory'] === subcategory
-  );
-  populateCatalog(filtered);
+    fetch(sheetURL)
+        .then(response => response.text())
+        .then(csvText => {
+            const data = csvToJson(csvText);
+            const filtered = data.filter(item =>
+                item['Category']?.trim().toLowerCase() === category.toLowerCase() &&
+                item['Subcategory']?.trim().toLowerCase() === subcategory.toLowerCase()
+            );
+            populateCatalog(filtered);
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
-
 
 function csvToJson(csvText) {
     const lines = csvText.split('\n');
@@ -37,13 +43,16 @@ function csvToJson(csvText) {
     return result;
 }
 function filterByColor(color) {
-  const filtered = data.filter(item => item['Colors Available'].includes(color));
-  populateCatalog(filtered);
+    // Fetch product data and filter by color
+    // Replace this with actual data filtering logic based on color
+    const filtered = data.filter(item => item['Colors Available'].includes(color));
+    populateCatalog(filtered);
 }
 
 function filterBySize(size) {
-  const filtered = data.filter(item => item['Sizes Available'].includes(size));
-  populateCatalog(filtered);
+    // Filter products by size
+    const filtered = data.filter(item => item['Sizes Available'].includes(size));
+    populateCatalog(filtered);
 }
 function populateCatalog(data) {
     const productGrid = document.getElementById('product-grid');
