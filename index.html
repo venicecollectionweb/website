@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clothing Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Clothing Catalog</h1>
+    <nav>
+      <button onclick="filterCategory('All')">All</button>
+      <button onclick="filterCategory('Men')">Men</button>
+      <button onclick="filterCategory('Women')">Women</button>
+      <button onclick="filterCategory('Kids')">Kids</button>
+    </nav>
+  </header>
+  <main id="product-grid">
+    <div class="product-card" data-category="Kids">
+      <h2>BODY BAMBINI</h2>
+      <div class="gallery">
+        <img src="products/BODY/body1-red.jpg" alt="Red version" />
+        <img src="products/BODY/body1-blue.jpg" alt="Blue version" />
+      </div>
+      <p><strong>Sizes:</strong> S, M, L</p>
+      <p><strong>Colors:</strong> Red, Blue</p>
+      <p><strong>Type:</strong> Embroidered</p>
+    </div>
+
+    <div class="product-card" data-category="Men">
+      <h2>FCP - Felpa Uomo</h2>
+      <div class="gallery">
+        <img src="products/FCP/fcp-black.jpg" alt="Black" />
+        <img src="products/FCP/fcp-white.jpg" alt="White" />
+      </div>
+      <p><strong>Sizes:</strong> M, L, XL</p>
+      <p><strong>Colors:</strong> Black, White</p>
+      <p><strong>Type:</strong> Plain</p>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
