@@ -1,49 +1,54 @@
-// Show product images based on category and subcategory
-function showImages(category, subcategory) {
-  const imgContainer = document.getElementById('product-grid');
-  let html = `<h3>${category} → ${subcategory}</h3>`;
-
-  // Handle the "Personalizzate" category with print names
-  if (subcategory === 'Personalizzate') {
-      html += `
-          <h4>Choose Print Names</h4>
-          <ul>
-              <li><button onclick="showPrintNames('Uomini', 'Personalizzate', 'Name1')">Name1</button></li>
-              <li><button onclick="showPrintNames('Uomini', 'Personalizzate', 'Name2')">Name2</button></li>
-              <li><button onclick="showPrintNames('Uomini', 'Personalizzate', 'Name3')">Name3</button></li>
-              <li><button onclick="showPrintNames('Uomini', 'Personalizzate', 'Name4')">Name4</button></li>
-          </ul>
-      `;
-  } else {
-      // Show product images for Ricamato and Serigrafata categories
-      html += `<div class="grid">`;
-
-      for (let i = 1; i <= 3; i++) {
-          const path = `images/${category}/${subcategory}/${subcategory}_${i}.jpg`.replace(/ /g, "_");
-          html += `
-              <div style="margin:10px; text-align:center;">
-                  <img src="${path}" style="width:200px;" alt="${subcategory}">
-                  <p><strong>Taglie:</strong> S, M, L, XL<br><strong>Colori:</strong> Rosso, Nero, Blu</p>
-              </div>`;
-      }
-
-      html += `</div>`;
-  }
-
-  imgContainer.innerHTML = html;
+// Replace this with your Google Sheets API URL or published CSV link
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUnIop4Zhx5BRaUYGxXOmOPs5r5d_uj4PiBDCoxG_Ps8uA2ThSZQ3hkC5bhrzZDpMbzkVb7Mb_klAH/pubhtml'
+// Function to fetch data from the sheet
+async function fetchProductData() {
+    try {
+        const response = await fetch(sheetURL);
+        const csvText = await response.text();
+        const data = csvToJson(csvText); // Convert CSV text to JSON format
+        populateCatalog(data);  // Populate the catalog using the retrieved data
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
-// Show available print names for Personalizzate
-function showPrintNames(category, subcategory, name) {
-  const imgContainer = document.getElementById('product-grid');
-  imgContainer.innerHTML = `<h3>${category} → ${subcategory} → Print: ${name}</h3>`;
+// Convert CSV to JSON
+function csvToJson(csvText) {
+    const lines = csvText.split('\n');
+    const headers = lines[0].split(',');
+    const result = [];
 
-  // Sample display for each print name (you can customize per name)
-  imgContainer.innerHTML += `
-      <div style="margin:10px; text-align:center;">
-          <p><strong>Print Name:</strong> ${name}</p>
-          <img src="images/${category}/${subcategory}/${name}.jpg" style="width:200px;" alt="${name}">
-          <p><strong>Taglie:</strong> S, M, L, XL<br><strong>Colori:</strong> Rosso, Nero, Blu</p>
-      </div>
-  `;
+    for (let i = 1; i < lines.length; i++) {
+        const obj = {};
+        const currentLine = lines[i].split(',');
+
+        for (let j = 0; j < headers.length; j++) {
+            obj[headers[j]] = currentLine[j];
+        }
+        result.push(obj);
+    }
+
+    return result;
 }
+
+// Function to populate catalog dynamically
+function populateCatalog(data) {
+    const productGrid = document.getElementById('product-grid');
+    let html = '';
+
+    data.forEach(product => {
+        html += `
+            <div class="product">
+                <h4>${product['Product Name']}</h4>
+                <img src="${product['Image Path']}" alt="${product['Product Name']}" style="width:200px;">
+                <p><strong>Colors:</strong> ${product['Colors Available']}</p>
+                <p><strong>Sizes:</strong> ${product['Sizes Available']}</p>
+            </div>
+        `;
+    });
+
+    productGrid.innerHTML = html;
+}
+
+// Call the function when the page loads
+window.onload = fetchProductData;
