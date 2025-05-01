@@ -1,44 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clothing Catalog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalogo Abbigliamento</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Clothing Catalog</h1>
-    <nav>
-      <button onclick="filterCategory('All')">All</button>
-      <button onclick="filterCategory('Men')">Men</button>
-      <button onclick="filterCategory('Women')">Women</button>
-      <button onclick="filterCategory('Kids')">Kids</button>
+  <div class="container">
+    <nav class="sidebar">
+      <h2>Categorie</h2>
+      <button onclick="showSub('Tutti')">🛍 Tutti i prodotti</button>
+      <button onclick="showSub('Uomini')">🧍‍♂️ Uomini</button>
+      <button onclick="showSub('Donne')">👩 Donne</button>
+      <button onclick="showSub('Bambini')">🧒 Bambini</button>
+      <button onclick="showSub('Neonati')">👶 Neonati</button>
     </nav>
-  </header>
-  <main id="product-grid">
-    <div class="product-card" data-category="Kids">
-      <h2>BODY BAMBINI</h2>
-      <div class="gallery">
-        <img src="products/BODY/body1-red.jpg" alt="Red version" />
-        <img src="products/BODY/body1-blue.jpg" alt="Blue version" />
+    <main class="content">
+      <div id="subcategories">
+        <h2>Sottocategorie</h2>
+        <div id="sub-buttons">
+          <!-- dynamically filled -->
+        </div>
       </div>
-      <p><strong>Sizes:</strong> S, M, L</p>
-      <p><strong>Colors:</strong> Red, Blue</p>
-      <p><strong>Type:</strong> Embroidered</p>
-    </div>
-
-    <div class="product-card" data-category="Men">
-      <h2>FCP - Felpa Uomo</h2>
-      <div class="gallery">
-        <img src="products/FCP/fcp-black.jpg" alt="Black" />
-        <img src="products/FCP/fcp-white.jpg" alt="White" />
+      <div id="product-grid">
+        <p>Seleziona una categoria per vedere i prodotti.</p>
       </div>
-      <p><strong>Sizes:</strong> M, L, XL</p>
-      <p><strong>Colors:</strong> Black, White</p>
-      <p><strong>Type:</strong> Plain</p>
-    </div>
-  </main>
+    </main>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

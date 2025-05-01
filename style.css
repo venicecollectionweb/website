@@ -1,46 +1,48 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  background: #f9f9f9;
+  background: #f0f0f0;
 }
-header {
-  background: #333;
-  color: #fff;
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.sidebar {
+  background-color: #333;
+  color: white;
   padding: 1rem;
-  text-align: center;
+  width: 220px;
 }
-nav {
-  margin-top: 1rem;
-}
-nav button {
-  margin: 0 5px;
-  padding: 0.5rem 1rem;
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  font-size: 1.2rem;
   background: #555;
   color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 5px;
 }
-nav button:hover {
+.sidebar button:hover {
   background: #777;
 }
-#product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+.content {
+  flex-grow: 1;
   padding: 1rem;
 }
-.product-card {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+#subcategories {
+  margin-bottom: 1rem;
 }
-.gallery {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-}
-.gallery img {
-  height: 120px;
+#sub-buttons button {
+  margin: 0.3rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  background: #0077cc;
+  color: white;
+  border: none;
   border-radius: 6px;
+}
+#sub-buttons button:hover {
+  background: #005fa3;
 }
