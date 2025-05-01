@@ -12,18 +12,12 @@ async function fetchProductData() {
 }
 
 function showImages(category, subcategory) {
-    fetch(sheetURL)
-        .then(response => response.text())
-        .then(csvText => {
-            const data = csvToJson(csvText);
-            const filtered = data.filter(item =>
-                item['Category']?.trim().toLowerCase() === category.toLowerCase() &&
-                item['Subcategory']?.trim().toLowerCase() === subcategory.toLowerCase()
-            );
-            populateCatalog(filtered);
-        })
-        .catch(error => console.error('Error fetching data:', error));
+  const filtered = data.filter(item => 
+      item['Category'] === category && item['Subcategory'] === subcategory
+  );
+  populateCatalog(filtered);
 }
+
 
 function csvToJson(csvText) {
     const lines = csvText.split('\n');
