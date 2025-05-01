@@ -3,7 +3,7 @@ const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vYourSheetID/p
 
 async function fetchProductData() {
     try {
-        const response = await fetch(sheetURL); // ✅ fixed typo
+        const response = await fetch(sheetURL);
         const csvText = await response.text();
         const data = csvToJson(csvText); 
         populateCatalog(data);  
