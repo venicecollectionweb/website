@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Catalog</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- Category Buttons -->
+<div class="category-buttons">
+  <button onclick="showImages('Uomini', 'Ricamato')">Uomini Ricamato</button>
+  <button onclick="showImages('Uomini', 'Serigrafata')">Uomini Serigrafata</button>
+  <button onclick="showImages('Uomini', 'Personalizzate')">Uomini Personalizzate</button>
+</div>
 
-    <h1>Welcome to Our Product Catalog</h1>
+<!-- Filter Buttons (Optional) -->
+<div class="filter-buttons">
+  <button onclick="filterByColor('Rosso')">Rosso</button>
+  <button onclick="filterBySize('S')">S</button>
+  <!-- More filters as needed -->
+</div>
 
-    <div class="category-buttons">
-        <button onclick="showImages('Uomini', 'Ricamato')">Uomini - Ricamato</button>
-        <button onclick="showImages('Uomini', 'Serigrafata')">Uomini - Serigrafata</button>
-        <button onclick="showImages('Uomini', 'Personalizzate')">Uomini - Personalizzate</button>
-    </div>
-
-    <div id="product-grid"></div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<!-- Product Grid -->
+<div id="product-grid" class="product-grid"></div>
