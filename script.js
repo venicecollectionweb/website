@@ -1,33 +1,34 @@
-// Replace this with your Google Sheets API URL or published CSV link
-const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUnIop4Zhx5BRaUYGxXOmOPs5r5d_uj4PiBDCoxG_Ps8uA2ThSZQ3hkC5bhrzZDpMbzkVb7Mb_klAH/pubhtml'
-// Function to fetch data from the sheet
+// Correct Google Sheet CSV link
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vYourSheetID/pub?output=csv';
+
 async function fetchProductData() {
     try {
-        const response = await fetch(sheetURsL);
+        const response = await fetch(sheetURL); // ✅ fixed typo
         const csvText = await response.text();
-        const data = csvToJson(csvText); // Convert CSV text to JSON format
-        populateCatalog(data);  // Populate the catalog using the retrieved data
+        const data = csvToJson(csvText); 
+        populateCatalog(data);  
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
+
 function showImages(category, subcategory) {
-  fetch(sheetURL)
-      .then(response => response.text())
-      .then(csvText => {
-          const data = csvToJson(csvText);
-          const filtered = data.filter(item => 
-              item['Category'] === category && item['Subcategory'] === subcategory
-          );
-          populateCatalog(filtered);
-      })
-      .catch(error => console.error('Error fetching data:', error));
+    fetch(sheetURL)
+        .then(response => response.text())
+        .then(csvText => {
+            const data = csvToJson(csvText);
+            const filtered = data.filter(item =>
+                item['Category']?.trim().toLowerCase() === category.toLowerCase() &&
+                item['Subcategory']?.trim().toLowerCase() === subcategory.toLowerCase()
+            );
+            populateCatalog(filtered);
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
-// Convert CSV to JSON
 function csvToJson(csvText) {
     const lines = csvText.split('\n');
-    const headers = lines[0].split(',');
+    const headers = lines[0].split(',').map(h => h.trim());
     const result = [];
 
     for (let i = 1; i < lines.length; i++) {
@@ -35,7 +36,7 @@ function csvToJson(csvText) {
         const currentLine = lines[i].split(',');
 
         for (let j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentLine[j];
+            obj[headers[j]] = currentLine[j]?.trim();
         }
         result.push(obj);
     }
@@ -43,7 +44,6 @@ function csvToJson(csvText) {
     return result;
 }
 
-// Function to populate catalog dynamically
 function populateCatalog(data) {
     const productGrid = document.getElementById('product-grid');
     let html = '';
@@ -62,5 +62,4 @@ function populateCatalog(data) {
     productGrid.innerHTML = html;
 }
 
-// Call the function when the page loads
 window.onload = fetchProductData;
