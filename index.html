@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catalogo Abbigliamento</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <nav class="sidebar">
-      <h2>Categorie</h2>
-      <button onclick="showSub('Tutti')">🛍 Tutti i prodotti</button>
-      <button onclick="showSub('Uomini')">🧍‍♂️ Uomini</button>
-      <button onclick="showSub('Donne')">👩 Donne</button>
-      <button onclick="showSub('Bambini')">🧒 Bambini</button>
-      <button onclick="showSub('Neonati')">👶 Neonati</button>
-    </nav>
-    <main class="content">
-      <div id="subcategories">
-        <h2>Sottocategorie</h2>
-        <div id="sub-buttons">
-          <!-- dynamically filled -->
-        </div>
-      </div>
-      <div id="product-grid">
-        <p>Seleziona una categoria per vedere i prodotti.</p>
-      </div>
-    </main>
-  </div>
-  <script src="script.js"></script>
+
+    <h1>Welcome to Our Product Catalog</h1>
+
+    <div class="category-buttons">
+        <button onclick="showImages('Uomini', 'Ricamato')">Uomini - Ricamato</button>
+        <button onclick="showImages('Uomini', 'Serigrafata')">Uomini - Serigrafata</button>
+        <button onclick="showImages('Uomini', 'Personalizzate')">Uomini - Personalizzate</button>
+    </div>
+
+    <div id="product-grid"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
