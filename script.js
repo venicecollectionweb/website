@@ -43,14 +43,11 @@ function csvToJson(csvText) {
     return result;
 }
 function filterByColor(color) {
-  // Fetch product data and filter by color
-  // Replace this with actual data filtering logic based on color
   const filtered = data.filter(item => item['Colors Available'].includes(color));
   populateCatalog(filtered);
 }
 
 function filterBySize(size) {
-  // Filter products by size
   const filtered = data.filter(item => item['Sizes Available'].includes(size));
   populateCatalog(filtered);
 }
