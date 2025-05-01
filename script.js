@@ -1,5 +1,5 @@
 // Correct Google Sheet CSV link
-const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUnIop4Zhx5BRaUYGxXOmOPs5r5d_uj4PiBDCoxG_Ps8uA2ThSZQ3hkC5bhrzZDpMbzkVb7Mb_klAH/pubhtml'
+const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUnIop4Zhx5BRaUYGxXOmOPs5r5d_uj4PiBDCoxG_Ps8uA2ThSZQ3hkC5bhrzZDpMbzkVb7Mb_klAH/pub?output=csv';
 async function fetchProductData() {
     try {
         const response = await fetch(sheetURL);
