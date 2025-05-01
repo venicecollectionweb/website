@@ -3,7 +3,7 @@ const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQUnIop4Zhx5BR
 // Function to fetch data from the sheet
 async function fetchProductData() {
     try {
-        const response = await fetch(sheetURL);
+        const response = await fetch(sheetURsL);
         const csvText = await response.text();
         const data = csvToJson(csvText); // Convert CSV text to JSON format
         populateCatalog(data);  // Populate the catalog using the retrieved data
